@@ -11,7 +11,7 @@ Tests written by AI, hope nothing bad happens 30/08/2025 14:31:30 -3 UTC
 from unittest import TestCase
 import unittest
 
-from prime_tools import is_prime, prime_range, prime_list, nearest_prime
+from src.prime_tools.prime_tools import is_prime, prime_range, prime_list, nearest_prime
 
 
 class TestIsPrime(TestCase):
