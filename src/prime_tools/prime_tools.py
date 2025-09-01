@@ -46,6 +46,13 @@ def prime_range(start: int, end: int) -> list:
     Returns:
         list: list of prime numbers that are >= start and < end
     """
+    if not isinstance(start, int):
+        raise TypeError("start must be an int, but was {}".format(type(start)))
+    if not isinstance(end, int):
+        raise TypeError("end must be an int, but was {}".format(type(end)))
+    # if start > end:
+    #     raise ValueError("start must be less than end")
+
     primes = []
 
     for number in range(start, end):
@@ -86,6 +93,7 @@ def prime_list(length: int, start: int = 0) -> list:
             start += 1
 
         except ValueError:
+            start += 1
             continue
 
     return primes
@@ -143,6 +151,7 @@ def nearest_prime(start: int, skips: int = 0, ascending: bool = True) -> int | N
 
                 elif is_prime(start):
                     skips -= 1
+
             except ValueError:
                 continue
 
