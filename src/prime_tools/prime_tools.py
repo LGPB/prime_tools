@@ -79,10 +79,14 @@ def prime_list(length: int, start: int = 0) -> list:
     primes = []
 
     while len(primes) < length:
-        if is_prime(start):
-            primes.append(start)
+        try:
+            if is_prime(start):
+                primes.append(start)
 
-        start += 1
+            start += 1
+
+        except ValueError:
+            continue
 
     return primes
 
@@ -119,20 +123,27 @@ def nearest_prime(start: int, skips: int = 0, ascending: bool = True) -> int | N
 
     if ascending:
         while True:
-            start += 1
-            if is_prime(start) and skips <= 0:
-                return start
+            try:
+                start += 1
+                if is_prime(start) and skips <= 0:
+                    return start
 
-            elif is_prime(start):
-                skips -= 1
+                elif is_prime(start):
+                    skips -= 1
+
+            except ValueError:
+                continue
 
     else:
         while start > 2:
-            start -= 1
-            if is_prime(start) and skips <= 0:
-                return start
+            try:
+                start -= 1
+                if is_prime(start) and skips <= 0:
+                    return start
 
-            elif is_prime(start):
-                skips -= 1
+                elif is_prime(start):
+                    skips -= 1
+            except ValueError:
+                continue
 
     return None
