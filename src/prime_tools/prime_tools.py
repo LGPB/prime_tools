@@ -35,7 +35,7 @@ def is_prime(num: int) -> bool:
     return True
 
 
-def prime_range(start: int, end: int) -> list:
+def prime_range(end: int, start: int = 0) -> list:
     """
     Returns a list of prime numbers that are >= start and < end
 
@@ -45,6 +45,8 @@ def prime_range(start: int, end: int) -> list:
 
     Returns:
         list: list of prime numbers that are >= start and < end
+    Raises:
+        TypeError: if start and end are not int
     """
     if not isinstance(start, int):
         raise TypeError("start must be an int, but was {}".format(type(start)))
@@ -75,6 +77,9 @@ def prime_list(length: int, start: int = 0) -> list:
 
     Returns:
         list: list of prime numbers of len(length) with the first prime >= start
+    Raises:
+        TypeError: if start and end are not int
+        ValueError: if length is not positive
     """
     if not isinstance(length, int):
         raise TypeError("length must be an int, but was {}".format(type(length)))

@@ -52,36 +52,37 @@ class TestIsPrime(TestCase):
         self.assertTrue(is_prime(104729), "104729 is a prime (the 10000th prime)")
         self.assertFalse(is_prime(104729 * 2), "Even multiple of a prime is composite")
 
+
 class TestPrimeRange(TestCase):
     def test_basic_range(self):
         """simple inclusive/exclusive behavior: primes >= start and < end"""
-        self.assertEqual(prime_range(2, 10), [2, 3, 5, 7])
-        self.assertEqual(prime_range(3, 6), [3, 5])
+        self.assertEqual(prime_range(10, 2), [2, 3, 5, 7])
+        self.assertEqual(prime_range(6, 3), [3, 5])
 
     def test_empty_range(self):
         """ranges with no primes return empty list"""
-        self.assertEqual(prime_range(14, 16), [])
+        self.assertEqual(prime_range(16, 14), [])
         # end <= start -> typically returns empty list (test expects that)
         self.assertEqual(prime_range(10, 10), [])
-        self.assertEqual(prime_range(11, 10), [])  # if your implementation raises, change this test
+        self.assertEqual(prime_range(10, 11), [])  # if your implementation raises, change this test
 
     def test_start_below_two(self):
         """start below 2 should normally treat primes starting at 2"""
-        self.assertEqual(prime_range(-5, 5), [2, 3])
+        self.assertEqual(prime_range(5, -5), [2, 3])
 
     def test_type_checks(self):
         """non-int types should raise TypeError (recommended)"""
         for bad in (2.0, "10", None, [], (3,)):
             with self.subTest(bad=bad):
                 with self.assertRaises(TypeError):
-                    prime_range(bad, 10)
+                    prime_range(10, bad)
                 with self.assertRaises(TypeError):
-                    prime_range(2, bad)
+                    prime_range(bad, 2)
 
     def test_large_range_sample(self):
         """sanity check for larger ranges (not exhaustive)"""
         # primes between 100 and 120: [101, 103, 107, 109, 113]
-        self.assertEqual(prime_range(100, 120), [101, 103, 107, 109, 113])
+        self.assertEqual(prime_range(120, 100), [101, 103, 107, 109, 113])
 
 
 class TestPrimeList(TestCase):
